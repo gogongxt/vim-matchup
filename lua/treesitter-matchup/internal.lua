@@ -150,7 +150,7 @@ M.get_matches = function(bufnr)
     lang_tree:parse({ start_row, end_row })
     ---@type vim.treesitter.LanguageTree?
     local nested_lang_tree = lang_tree:language_for_range({ cursor[1]-1, cursor[2], cursor[1]-1, cursor[2] })
-    while vim.tbl_isempty(matches) and nested_lang_tree ~= nil do
+    while nested_lang_tree ~= nil do
       local lang = nested_lang_tree:lang()
       if lang ~= 'comment' then
         for _, tree in ipairs(nested_lang_tree:trees()) do
